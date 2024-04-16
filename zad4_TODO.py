@@ -57,8 +57,13 @@ def get_right_subtree(root: Optional[Node]):
     return None
 
 
+def bmHelper(root: Optional[Node], cmin: int, cmax: int) -> tuple[int, int]:
+    if root.left
+    pass
+
+
 def is_valid_BST(root: Optional[Node]) -> bool:
-    # TODO: Mając dany korzeń drzewa binarnego root sprawdź czy jest ono drzewem BST.
+    return is
     pass
 
 

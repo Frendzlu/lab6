@@ -17,10 +17,10 @@ class Node:
 
 def create_binary_tree(node_values: List[str]):
     if (
-        not node_values
-        or len(node_values) == 0
-        or node_values[0].strip() == ""
-        or node_values[0] == "null"
+            not node_values
+            or len(node_values) == 0
+            or node_values[0].strip() == ""
+            or node_values[0] == "null"
     ):
         return None
     root = Node(int(node_values[0]))
@@ -46,14 +46,21 @@ def create_binary_tree(node_values: List[str]):
     return root
 
 
-def get_height(root: Optional[Node]) -> int:
-    # TODO: Mając dany korzeń drzewa binarnego root zwróć jego wysokość
-    pass
+def get_height(root: Optional[Node]) -> int:  # O(n + 2m), gdzie m - liczba liści ostatniego rzędu, czyli liniowa
+    if root is None:
+        return -1
+    return max(get_height(root.left), get_height(root.right)) + 1
+
+
+def get_min_height(root: Optional[Node]) -> int:  # jak wyżej
+    if root is None:
+        return -1
+    return min(get_min_height(root.left), get_min_height(root.right)) + 1
 
 
 def is_balanced(root: Optional[Node]) -> bool:
-    # TODO: Mając dany korzeń drzewa binarnego root sprawdź czy to drzewo jest zbalansowane.
-    pass
+    return get_height(root) - get_min_height(root) < 2
+
 
 # nie modyfikuj poniższego kodu
 if __name__ == "__main__":

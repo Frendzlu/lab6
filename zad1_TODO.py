@@ -47,14 +47,18 @@ def create_binary_tree(node_values: List[str]):
 
 
 def invert_tree(root: Optional[Node]) -> Optional[Node]:
-    # TODO: Mając podany korzeń drzewa BST root odwróć drzewo
-    pass
-
+    if root is not None:
+        root.left, root.right = root.right, root.left
+        invert_tree(root.right)
+        invert_tree(root.left)
+    return root
 
 def display_inorder(root: Optional[Node]):
-    # TODO: Mając podany korzeń drzewa BST wypisz jego elementy w kolejności inorder
-    # Elementy powinny być oddzielone od siebie spacją
-    pass
+    if root is None:
+        return
+    display_inorder(root.left)
+    print(root.val, end=" ")
+    display_inorder(root.right)
 
 
 # nie zmieniaj poniższego kodu
