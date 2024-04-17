@@ -59,16 +59,19 @@ def is_same_tree(p: Optional[Node], q: Optional[Node]) -> bool:
 def is_subtree(root: Optional[Node], subRoot: Optional[Node]) -> bool:
     if root is None:
         return False
+    potentialSubtree = False
     if subRoot.val == root.val:
-        return is_same_tree(root, subRoot)
+        potentialSubtree = is_same_tree(root, subRoot)
+    if potentialSubtree:
+        return potentialSubtree
     isSubtree = [False, False]
     for i, ch in enumerate(["left", "right"]):
         node: Optional[Node] = getattr(root, ch)
         if node is not None:
-            if subRoot.val > root.val and node.val > root.val:
+            if subRoot.val >= root.val and node.val >= root.val:
                 isSubtree[i] = is_subtree(node, subRoot)
                 continue
-            if subRoot.val < root.val and node.val < root.val:
+            if subRoot.val <= root.val and node.val <= root.val:
                 isSubtree[i] = is_subtree(node, subRoot)
     return any(isSubtree)
 

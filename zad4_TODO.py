@@ -6,7 +6,7 @@ Po zaimplementowaniu rozwiązania komendy `pass` powinny być usunięte.
 """
 
 from typing import List, Optional
-
+import math
 class Node:
     def __init__(self, val: int, left=None, right=None):
         self.val = val
@@ -57,14 +57,17 @@ def get_right_subtree(root: Optional[Node]):
     return None
 
 
-def bmHelper(root: Optional[Node], cmin: int, cmax: int) -> tuple[int, int]:
-    if root.left
-    pass
+def bmHelper(root: Optional[Node]) -> tuple[float, float, bool]:
+    if root is None:
+        return math.inf, -math.inf, True
+    lmin, lmax, lis = bmHelper(root.left)
+    rmin, rmax, ris = bmHelper(root.right)
+    isValid = rmin >= root.val >= lmax
+    return min(root.val, lmin), max(root.val, rmax), isValid and lis and ris
 
 
 def is_valid_BST(root: Optional[Node]) -> bool:
-    return is
-    pass
+    return bmHelper(root)[2]
 
 
 # nie modyfikuj poniższego kodu
